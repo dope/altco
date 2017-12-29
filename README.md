@@ -1,0 +1,3 @@
+# Altco
+
+Coming Soon :)
