@@ -1,10 +1,11 @@
-const baseDropdown = document.getElementById('base')
+const baseDropdown   = document.getElementById('base')
 const targetDropdown = document.getElementById('target')
-const refreshButton = document.getElementById('refresh')
-const price = document.getElementById('price')
-const theme = document.getElementById('theme')
-
-let themeValue = JSON.parse(localStorage.getItem('darkTheme'))
+const refreshButton  = document.getElementById('refresh')
+const name           = document.getElementById('name')
+const price          = document.getElementById('price')
+const theme          = document.getElementById('theme')
+const arrow          = document.getElementById('arrow')
+const themeValue     = JSON.parse(localStorage.getItem('darkTheme'))
 
 function makeCheck() {
   if (themeValue === true) {
@@ -17,7 +18,6 @@ function makeCheck() {
 // Init and check theme
 theme.addEventListener('click', function () {
   localStorage.setItem('darkTheme', theme.checked)
-
   if (theme.checked) {
     document.documentElement.classList.add('dark')
   } else {
@@ -29,10 +29,24 @@ makeCheck()
 theme.checked = themeValue
 
 function getTicker(base, target) {
-  fetch('https://api.cryptonator.com/api/ticker/' + base + '-' + target).then(function(response) {
+  fetch('https://api.cryptonator.com/api/ticker/' + base + '-' + target)
+  .then(function(response) {
     return response.json();
   }).then(function(data) {
     price.innerHTML = Math.floor(data.ticker.price).toLocaleString()
+
+    if (data.ticker.base === 'BTC') {
+      name.innerHTML = 'Bitcoin'
+    }
+
+    if (data.ticker.base === 'ETH') {
+      name.innerHTML = 'Ethereum'
+    }
+
+    if (data.ticker.base === 'LTC') {
+      name.innerHTML = 'Litecoin'
+    }
+
     if (data.ticker.target === 'EUR') {
       currency.innerHTML = '€'
     }

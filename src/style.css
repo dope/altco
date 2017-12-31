@@ -55,9 +55,22 @@ select {
 .price {
   display: block;
   font-size: 8vw;
-  font-weight: 200;
+  font-weight: 100;
   color: #30343F;
-  text-align: center;
+  text-align: left;
+}
+
+.price__name {
+  font-size: 1vw;
+  text-align: left;
+  font-weight: 600;
+  background: #3F79F6;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  color: #FFFFFF;
+  padding: 10px;
+  border-radius: 3px;
+  display: table;
+  margin-bottom: 10px;
 }
 
 .theme {
