@@ -1,7 +1,32 @@
 const baseDropdown = document.getElementById('base')
 const targetDropdown = document.getElementById('target')
 const refreshButton = document.getElementById('refresh')
-const price = document.getElementById('price');
+const price = document.getElementById('price')
+const theme = document.getElementById('theme')
+
+let themeValue = JSON.parse(localStorage.getItem('darkTheme'))
+
+function makeCheck() {
+  if (themeValue === true) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+}
+
+// Init and check theme
+theme.addEventListener('click', function () {
+  localStorage.setItem('darkTheme', theme.checked)
+
+  if (theme.checked) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+})
+
+makeCheck()
+theme.checked = themeValue
 
 function getTicker(base, target) {
   fetch('https://api.cryptonator.com/api/ticker/' + base + '-' + target).then(function(response) {
@@ -21,7 +46,7 @@ function getTicker(base, target) {
     }
   }).catch(function(data) {
     console.log(data)
-  });
+  })
 }
 
 if (localStorage.getItem('base')) {
@@ -32,21 +57,15 @@ if (localStorage.getItem('target')) {
   targetDropdown.value = localStorage.getItem('target')
 }
 
-baseDropdown.addEventListener('change', function() {
+baseDropdown.addEventListener('change', function () {
   localStorage.setItem('base', this.value)
   refreshButton.classList.add('refresh--show')
-});
+})
 
-targetDropdown.addEventListener('change', function() {
+targetDropdown.addEventListener('change', function () {
   localStorage.setItem('target', this.value)
-  refreshButton.classList.add('refresh--show')
-});
-
-refreshButton.addEventListener('click', function(base, target) {
-  getTicker(localStorage.getItem('base'), localStorage.getItem('target'))
-  refreshButton.classList.remove('refresh--show')
 })
 
 setInterval(function () {
   getTicker(localStorage.getItem('base') || 'btc', localStorage.getItem('target') || 'usd')
-}, 500);
+}, 500)

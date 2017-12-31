@@ -1,25 +1,27 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  /* god forgive me */
+  transition: all 200ms ease-in-out;
 }
 
 html {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
 }
 
 body {
-    height: 100vh;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+  height: 100vh;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 section {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 500px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 300px;
 }
 
 label {
@@ -50,55 +52,94 @@ select {
   opacity: 0.4;
 }
 
-.refresh {
-  position: fixed;
-  bottom: 40px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  height: 50px;
-  width: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  -webkit-appearance: none;
-  background: #30343F;
-  border: 0;
-  cursor: pointer;
-  outline: 0;
-  border-radius: 100px;
-  opacity: 0;
-  transform: translate3d(0, 20px, 0);
-  transition: opacity 400ms ease-in-out 200ms, transform 400ms ease-in-out 200ms;
-  color: white;
-  padding: 0 20px;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 300;
-}
-
-.refresh--show {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-svg {
-  transition: transform 800ms linear;
-  stroke: white;
-  width: 15px;
-  margin-right: 10px;
-}
-
-.refresh:hover svg {
-  transform: rotate(360deg);
-}
-
 .price {
   display: block;
-  font-size: 7vw;
-  font-weight: 700;
+  font-size: 8vw;
+  font-weight: 200;
   color: #30343F;
-  min-width: 40%;
   text-align: center;
+}
+
+.theme {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+}
+
+.theme span {
+  position: absolute;
+  min-width: 100px;
+  top: -25px;
+  left: -30px;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  transform: translate3d(0, 10px, 0);
+  opacity: 0;
+  transition: transform 300ms ease-in-out 200ms, opacity 300ms ease-in-out 200ms;
+}
+
+.theme input {
+  display: block;
+  -webkit-appearance: none;
+  width: 50px;
+}
+
+.theme label {
+  cursor: ew-resize;
+  background: #DEE2E7;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+  height: 20px;
+  content: "";
+  border-radius: 100px;
+}
+
+.theme label:hover span {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.theme label:after {
+  position: absolute;
+  top: -1px;
+  bottom: 0;
+  left: 3px;
+  margin: auto;
+  width: 14px;
+  height: 14px;
+  border-radius: 100px;
+  background: #fff;
+  content: "";
+  transition: left 200ms linear;
+  box-shadow: 0 1px 4px #B7C0C8;
+}
+
+.theme input:checked + label:after {
+  left: calc(100% - 18px);
+}
+
+/* Dark Theme */
+.dark {
+  background: #202731;
+}
+
+.dark .price {
+  color: #FFF;
+}
+
+.dark label {
+  color: #fff;
+}
+
+.dark select {
+  border-bottom-color: #fff;
+  color: #fff;
+}
+
+.dark .theme label {
+  background: rgba(0, 0, 0, 0.5);
 }
