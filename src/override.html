@@ -12,22 +12,12 @@
   <section>
     <div class="group">
       <label>Base</label>
-      <select id="base">
-        <option disabled>Select Base</option>
-        <option value="btc">Bitcoin</option>
-        <option value="eth">Ethereum</option>
-        <option value="ltc">Litecoin</option>
-      </select>
+      <input type="text" id="base">
     </div>
 
     <div class="group">
       <label>Target</label>
-      <select id="target">
-        <option disabled>Select Target</option>
-        <option value="gbp">GBP</option>
-        <option value="usd">USD</option>
-        <option value="eur">EUR</option>
-      </select>
+      <input type="text" id="target">
     </div>
   </section>
 
@@ -35,6 +25,8 @@
     <h4 class="price__name" id="name"></h4>
     <span id="currency"></span><!--
     --><span id="price"></span>
+
+    <span class="change" id="change"></span>
   </div>
 
   <div class="theme">

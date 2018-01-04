@@ -14,6 +14,10 @@
 
     "chrome_url_overrides" :{
         "newtab": "src/override.html"
-    }
+    },
+
+    "permissions": [
+      "*://*.coinmarketcap.com/*"
+    ],
 
 }

@@ -3,6 +3,7 @@ const targetDropdown = document.getElementById('target')
 const refreshButton  = document.getElementById('refresh')
 const name           = document.getElementById('name')
 const price          = document.getElementById('price')
+const change         = document.getElementById('change')
 const theme          = document.getElementById('theme')
 const arrow          = document.getElementById('arrow')
 const themeValue     = JSON.parse(localStorage.getItem('darkTheme'))
@@ -28,35 +29,28 @@ theme.addEventListener('click', function () {
 makeCheck()
 theme.checked = themeValue
 
+function format (num) {
+  return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+}
+
+document.documentElement.style.opacity = 0
+
 function getTicker(base, target) {
-  fetch('https://api.cryptonator.com/api/ticker/' + base + '-' + target)
+  fetch('https://api.cryptonator.com/api/full/' + base + '-' + target)
   .then(function(response) {
     return response.json();
   }).then(function(data) {
-    price.innerHTML = Math.floor(data.ticker.price).toLocaleString()
+    price.innerHTML = format(JSON.parse(data.ticker.price))
+    name.innerHTML = data.ticker.base + ' to ' + data.ticker.target
 
-    if (data.ticker.base === 'BTC') {
-      name.innerHTML = 'Bitcoin'
-    }
+    document.documentElement.style.opacity = 1
 
-    if (data.ticker.base === 'ETH') {
-      name.innerHTML = 'Ethereum'
-    }
-
-    if (data.ticker.base === 'LTC') {
-      name.innerHTML = 'Litecoin'
-    }
-
-    if (data.ticker.target === 'EUR') {
-      currency.innerHTML = '€'
-    }
-
-    if (data.ticker.target === 'USD') {
-      currency.innerHTML = '$'
-    }
-
-    if (data.ticker.target === 'GBP') {
-      currency.innerHTML = '£'
+    if (data.ticker.change.startsWith('-')) {
+      change.innerHTML = '<span>▼</span>' + format(JSON.parse(data.ticker.change))
+      change.classList.add('down')
+    } else {
+      change.innerHTML = '<span>▲</span>' + format(JSON.parse(data.ticker.change))
+      change.classList.add('up')
     }
   }).catch(function(data) {
     console.log(data)
