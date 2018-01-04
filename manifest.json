@@ -4,7 +4,7 @@
     "name": "Altco",
     "description": "A simple altcoin ticker",
     "homepage_url": "http://dope.github.io/altco",
-    "version": "1.3",
+    "version": "1.4",
 
     "icons": {
         "16": "icons/16-icon.png",
