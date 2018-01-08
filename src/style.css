@@ -1,8 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  /* god forgive me */
-  transition: all 200ms ease-in-out;
 }
 
 html {
@@ -96,6 +94,31 @@ input {
   margin-bottom: 10px;
 }
 
+.spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid #3F79F6;
+  border-right: 2px solid #3F79F6;
+  border-bottom: 2px solid #3F79F6;
+  border-left: 2px solid transparent;
+  animation: spin 500ms linear infinite;
+
+  opacity: 1;
+  transition: opacity 400ms ease-in-out 300ms;
+}
+
+.main {
+  opacity: 0;
+  transition: opacity 400ms ease-in-out 300ms;
+}
+
 .theme {
   position: fixed;
   bottom: 40px;
@@ -179,4 +202,22 @@ input {
 
 .dark .theme label {
   background: rgba(0, 0, 0, 0.5);
+}
+
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
