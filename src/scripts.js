@@ -39,9 +39,21 @@ function getTicker(base, target) {
   .then(function(response) {
     return response.json();
   }).then(function(data) {
+    if (!data.success) {
+      change.classList.add('hide')
+      main.classList.add('show')
+      spinner.classList.add('hide')
+      name.classList.add('hide')
+      price.innerHTML = 'No matches.'
+    } else {
+      change.classList.remove('hide')
+      main.classList.remove('show')
+      spinner.classList.remove('hide')
+      name.classList.remove('hide')
+    }
+
     main.classList.add('show')
     spinner.classList.add('hide')
-
     price.innerHTML = format(JSON.parse(data.ticker.price))
     name.innerHTML = data.ticker.base + ' to ' + data.ticker.target
 
@@ -77,9 +89,15 @@ if (!navigator.onLine) {
   main.classList.add('show')
   spinner.classList.add('hide')
   name.classList.add('hide')
+  change.classList.add('hide')
   price.innerHTML = 'No Connection'
+} else {
+  change.classList.remove('hide')
+  main.classList.remove('show')
+  spinner.classList.remove('hide')
+  name.classList.remove('hide')
 }
 
 setInterval(function () {
-  getTicker(localStorage.getItem('base') || 'btc', localStorage.getItem('target') || 'usd')
+  getTicker(localStorage.getItem('base') || 'BTC', localStorage.getItem('target') || 'USD')
 }, 500);
