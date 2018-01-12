@@ -9,15 +9,15 @@ const spinner        = document.getElementById('spinner')
 const main           = document.getElementById('main')
 const themeValue     = JSON.parse(localStorage.getItem('darkTheme'))
 
-function makeCheck() {
-  if (themeValue === true) {
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
+/**
+* Dark/Light Theme
+**/
+if (themeValue === true) {
+  document.documentElement.classList.add('dark')
+} else {
+  document.documentElement.classList.remove('dark')
 }
 
-// Init and check theme
 theme.addEventListener('click', function () {
   localStorage.setItem('darkTheme', theme.checked)
   if (theme.checked) {
@@ -27,13 +27,19 @@ theme.addEventListener('click', function () {
   }
 })
 
-makeCheck()
 theme.checked = themeValue
 
+
+/**
+* Format Numbers
+**/
 function format (num) {
   return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
 
+/**
+* API call for ticker
+**/
 function getTicker(base, target) {
   fetch('https://api.cryptonator.com/api/full/' + base + '-' + target)
   .then(function(response) {
