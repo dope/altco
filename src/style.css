@@ -116,22 +116,26 @@ input {
 
 .spinner {
   position: absolute;
+  z-index: 100000000;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   margin: auto;
   border-radius: 100px;
-  width: 20px;
-  height: 20px;
+  width: 35px;
+  height: 35px;
   border-top: 2px solid var(--main-accent);
   border-right: 2px solid var(--main-accent);
   border-bottom: 2px solid var(--main-accent);
   border-left: 2px solid transparent;
   animation: spin 500ms linear infinite;
-
   opacity: 1;
   transition: opacity 400ms ease-in-out 300ms;
+}
+
+.spinner--modal {
+  position: absolute;
 }
 
 .main {
@@ -292,7 +296,7 @@ input {
   transition: opacity 400ms linear;
 }
 .modal__overlay {
-  background: rgba(63, 121, 246, 0.95);
+  background: var(--main-accent);
   position: absolute;
   top: 0;
   left: 0;
@@ -337,6 +341,29 @@ input {
   background: var(--color-white);
 }
 
+.modal__price {
+  position: fixed;
+  bottom: 20px;
+  right: 490px;
+  z-index: 10000000000000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.modal__price .price__name {
+  background: var(--color-white);
+  color: var(--main-accent);
+  transition: opacity 400ms linear 100ms;
+}
+
+.modal__price span {
+  font-size: 2.5vw;
+  color: var(--color-white);
+  font-weight: 100;
+  transition: opacity 400ms linear 100ms;
+}
+
 .article {
   padding: 20px 40px;
   padding-left: 40px;
@@ -378,4 +405,8 @@ input {
 .article__desc {
   line-height: 1.5;
   font-size: 13px;
+}
+
+#mainPosts {
+  transition: opacity 400ms ease-in-out 300ms;
 }
