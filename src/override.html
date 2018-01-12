@@ -23,13 +23,13 @@
     </div>
   </section>
 
-  <div id="main" class="main price">
+  <section id="main" class="main price">
     <h4 class="price__name" id="name"></h4>
     <span id="currency"></span><!--
     --><span id="price"></span>
 
     <span class="change" id="change"></span>
-  </div>
+  </section>
 
   <div class="theme">
     <input id="theme" type="checkbox">
@@ -38,6 +38,19 @@
     </label>
   </div>
 
+  <button class="btn newsBtn">News</button>
+
+  <div class="modal">
+    <div class="modal__overlay modalExit"></div>
+    <div class="modal__inner">
+      <h1 class="modal__title">Top Headlines</h1>
+
+      <article id="posts">
+      </article>
+    </div>
+  </div>
+
 </body>
+
 <script src="scripts.js" charset="utf-8"></script>
 </html>

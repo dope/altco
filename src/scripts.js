@@ -8,6 +8,75 @@ const arrow          = document.getElementById('arrow')
 const spinner        = document.getElementById('spinner')
 const main           = document.getElementById('main')
 const themeValue     = JSON.parse(localStorage.getItem('darkTheme'))
+const html           = document.documentElement
+const newsBtn        = document.querySelector('.newsBtn')
+const modal          = document.querySelector('.modal')
+const modalExit      = document.querySelector('.modalExit')
+const newsUrl        = 'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey='
+const newsApiKey     = '9df70807854047a1b82ae13db6478880'
+const posts          = document.getElementById('posts')
+
+var dateToString = function dateToString(toConvert) {
+  var date = new Date(toConvert);
+  return date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+};
+
+fetch(newsUrl + newsApiKey)
+.then(function(response) {
+  return response.json();
+}).then(function(data) {
+  let articles = data.articles
+
+  articles.forEach( function (item) {
+    let title = item.title
+    let time = new Date(item.publishedAt).toLocaleDateString('en')
+    let desc = item.description
+    let link = item.url
+
+    let postInner = document.createElement('article');
+    postInner.innerHTML = [
+      '<a href="' + link + '" target="_blank" class="article">',
+        '<h2 class="article__title">' + title + '</h2>',
+        '<time class="article__time timeago" datetime="' + time + '">' + time + '</time>',
+        '<p class="article__desc">' + desc + '</p>',
+      '</a>'
+    ].join("\n");
+    posts.appendChild(postInner)
+  });
+}).catch(function(data) {
+  console.error(data)
+})
+
+/**
+* Modal
+*/
+function openModal() {
+  html.classList.add('fixed')
+  modal.classList.add('modal--open')
+  localStorage.setItem('modal', true)
+}
+
+function closeModal() {
+  modal.classList.remove('modal--open');
+  html.classList.remove('fixed')
+  localStorage.setItem('modal', false)
+}
+
+if (JSON.parse(localStorage.getItem('modal')) === true) {
+  openModal()
+}
+
+modalExit.addEventListener('click', closeModal);
+newsBtn.addEventListener('click', function() {
+  openModal()
+})
+
+document.addEventListener('keydown', function(event) {
+  const key = event.key;
+  if (key === "Escape") {
+    closeModal()
+  }
+});
 
 /**
 * Dark/Light Theme
