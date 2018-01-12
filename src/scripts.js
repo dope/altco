@@ -6,6 +6,7 @@ const change         = document.getElementById('change')
 const theme          = document.getElementById('theme')
 const arrow          = document.getElementById('arrow')
 const spinner        = document.getElementById('spinner')
+const modalSpinner        = document.getElementById('modalSpinner')
 const main           = document.getElementById('main')
 const themeValue     = JSON.parse(localStorage.getItem('darkTheme'))
 const html           = document.documentElement
@@ -15,6 +16,7 @@ const modalExit      = document.querySelector('.modalExit')
 const newsUrl        = 'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey='
 const newsApiKey     = '9df70807854047a1b82ae13db6478880'
 const posts          = document.getElementById('posts')
+const mainPosts          = document.getElementById('mainPosts')
 
 var dateToString = function dateToString(toConvert) {
   var date = new Date(toConvert);
@@ -106,6 +108,10 @@ function format (num) {
   return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
 
+modalPrice.style.opacity = 0;
+modalName.style.opacity = 0;
+mainPosts.style.opacity = 0;
+
 /**
 * API call for ticker
 **/
@@ -118,19 +124,29 @@ function getTicker(base, target) {
       change.classList.add('hide')
       main.classList.add('show')
       spinner.classList.add('hide')
+      modalSpinner.classList.add('hide')
       name.classList.add('hide')
       price.innerHTML = 'No matches.'
+      mainPosts.style.opacity = 1;
     } else {
       change.classList.remove('hide')
       main.classList.remove('show')
       spinner.classList.remove('hide')
+      modalSpinner.classList.remove('hide')
       name.classList.remove('hide')
+      mainPosts.style.opacity = 0;
     }
 
     main.classList.add('show')
     spinner.classList.add('hide')
+    modalSpinner.classList.add('hide')
+    mainPosts.style.opacity = 1;
     price.innerHTML = format(JSON.parse(data.ticker.price))
     name.innerHTML = data.ticker.base + ' to ' + data.ticker.target
+    modalPrice.innerHTML = format(JSON.parse(data.ticker.price))
+    modalName.innerHTML = data.ticker.base + ' to ' + data.ticker.target
+    modalPrice.style.opacity = 1;
+    modalName.style.opacity = 1;
 
     if (data.ticker.change.startsWith('-')) {
       change.innerHTML = '<span>▼</span>' + format(JSON.parse(data.ticker.change))
