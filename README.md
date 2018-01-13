@@ -4,6 +4,9 @@ Following crypto heavily I wanted to create a simple chrome extension which
 wasn't too distracting but was good enough to give me a quick update or if
 I wanted I could take a time to catch up on the latest headlines.
 
+![Light Theme](docs/images/light.jpg)
+![News](docs/images/news.jpg)
+
 ### Installation
 
 The most easiest method is installing through the Chrome Store [here](https://chrome.google.com/webstore/detail/altco/dlmjmklpkfldkhbfkkhbnegfiacaognj)
