@@ -1,0 +1,109 @@
+:root {
+  --main-accent: #3F79F6;
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --success-color: #4CAF50;
+  --error-color: #D03910;
+  --input-color: #30343F;
+  --dark-theme: #202731;
+  --color-white: #FFFFFF;
+  --toggle-background: rgba(0, 0, 0, 0.5);
+  --toggle-label: #DEE2E7;
+  --label-box-shadow: #B7C0C8;
+  --label-font-size: 13px;
+  --price-font-size: 8vw;
+  --price-name-font-size: 1vw;
+  --change-font-size: 14px;
+  --change-arrow-size: 0.7vw;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-stack);
+}
+
+body {
+  color: var(--dark-theme);
+  font-size: 16px;
+}
+
+a {
+  color: var(--dark-theme);
+  text-decoration: none;
+  transition: opacity 300ms linear;
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+header {
+  position: sticky;
+  width: 100%;
+  padding: 40px 0;
+}
+
+.logo {
+  color: var(--dark-theme);
+  display: inline-block;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.install {
+  display: inline-block;
+  vertical-align: middle;
+  width: 50%;
+  text-align: right;
+}
+
+.source {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.btn {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 10px 15px;
+  border-radius: 100px;
+}
+
+main {
+  max-width: 1380px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.hero {
+  height: 300px;
+  display: flex;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 3.5vw;
+  max-width: 70%;
+}
+
+.gallery__item {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+footer {
+  padding: 40px;
+  text-align: center;
+}
+
+footer a {
+  color: var(--main-accent);
+  border-bottom: 2px solid var(--main-accent);
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+}
