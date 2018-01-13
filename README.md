@@ -27,4 +27,5 @@ If you want to run it locally as a _website_ you can achieve this with the
 following steps
 
 ```git clone git@github.com:dope/altco.git```
+
 ``` cd altco && open src/override.html```
