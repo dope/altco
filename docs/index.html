@@ -6,6 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Altco</title>
     <link rel="stylesheet" href="style.css">
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@joericho" />
+    <meta property="og:url" content="http://altco.space" />
+    <meta property="og:title" content="Altco" />
+    <meta property="og:description" content="A simple altcoin ticker with the top headlines on crypto" />
+    <meta property="og:image" content="http://altco.space/images/dark.jpg" />
 </head>
 <body>
     <main>
@@ -13,7 +20,7 @@
             <a href="/" class="logo">Altco.</a><!--
             --><div class="install">
             <a class="source" href="//github.com/dope/altco">View Source</a>
-            <a class="btn" target="_blank" href="https://chrome.google.com/webstore/detail/altco/dlmjmklpkfldkhbfkkhbnegfiacaognj?ref=producthunt">Install</a>
+            <a class="btn js-download" target="_blank" href="https://chrome.google.com/webstore/detail/altco/dlmjmklpkfldkhbfkkhbnegfiacaognj?ref=producthunt">Install</a>
             </div>
         </header>
 
@@ -31,5 +38,20 @@
     <footer>
       <p>Built by <a href="http://jrich.cc" target="_blank">jrich.cc</a></p>
     </footer>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43771945-4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-43771945-4');
+    document.querySelector('.js-download').addEventListener('click', function() {
+      gtag('event', 'click', {
+        'event_category': 'downloads',
+        'event_label': 'Hero Button'
+      });
+    });
+    </script>
 </body>
 </html>
