@@ -208,9 +208,6 @@ input {
 }
 
 .btn {
-  position: fixed;
-  top: 40px;
-  right: 40px;
   -webkit-appearance: none;
   box-shadow: 0;
   border: 0;
@@ -222,10 +219,17 @@ input {
   border-radius: 100px;
   transition:
             border-color 300ms ease-in-out,
-            color 300ms ease-in-out;
+            color 300ms ease-in-out,
+            transform 300ms ease-in-out;
   cursor: pointer;
   outline: 0;
   background: transparent;
+}
+
+.btn--modal {
+  position: fixed;
+  top: 40px;
+  right: 40px;
 }
 
 .btn:hover {
@@ -234,7 +238,7 @@ input {
 }
 
 .btn:focus {
-  outline: 1px dotted var(--input-color);
+  transform: scale(0.9);
 }
 
 /* Dark Theme */

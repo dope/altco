@@ -6,7 +6,7 @@ const change         = document.getElementById('change')
 const theme          = document.getElementById('theme')
 const arrow          = document.getElementById('arrow')
 const spinner        = document.getElementById('spinner')
-const modalSpinner        = document.getElementById('modalSpinner')
+const modalSpinner   = document.getElementById('modalSpinner')
 const main           = document.getElementById('main')
 const themeValue     = JSON.parse(localStorage.getItem('darkTheme'))
 const html           = document.documentElement
@@ -16,7 +16,7 @@ const modalExit      = document.querySelector('.modalExit')
 const newsUrl        = 'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey='
 const newsApiKey     = '9df70807854047a1b82ae13db6478880'
 const posts          = document.getElementById('posts')
-const mainPosts          = document.getElementById('mainPosts')
+const mainPosts      = document.getElementById('mainPosts')
 
 var dateToString = function dateToString(toConvert) {
   var date = new Date(toConvert);
@@ -64,14 +64,10 @@ function closeModal() {
   localStorage.setItem('modal', false)
 }
 
-if (JSON.parse(localStorage.getItem('modal')) === true) {
-  openModal()
-}
+JSON.parse(localStorage.getItem('modal')) === true ? openModal() : null
 
-modalExit.addEventListener('click', closeModal);
-newsBtn.addEventListener('click', function() {
-  openModal()
-})
+modalExit.addEventListener('click', closeModal)
+newsBtn.addEventListener('click', openModal)
 
 document.addEventListener('keydown', function(event) {
   const key = event.key;
@@ -143,8 +139,8 @@ function getTicker(base, target) {
     mainPosts.style.opacity = 1;
     price.innerHTML = format(JSON.parse(data.ticker.price))
     name.innerHTML = data.ticker.base + ' to ' + data.ticker.target
-    modalPrice.innerHTML = format(JSON.parse(data.ticker.price))
     modalName.innerHTML = data.ticker.base + ' to ' + data.ticker.target
+    modalPrice.innerHTML = format(JSON.parse(data.ticker.price))
     modalPrice.style.opacity = 1;
     modalName.style.opacity = 1;
 
@@ -160,13 +156,8 @@ function getTicker(base, target) {
   })
 }
 
-if (localStorage.getItem('base')) {
-  baseDropdown.value = localStorage.getItem('base')
-}
-
-if (localStorage.getItem('target')) {
-  targetDropdown.value = localStorage.getItem('target')
-}
+baseDropdown.value = localStorage.getItem('base') || 'BTC'
+targetDropdown.value = localStorage.getItem('target') || 'USD'
 
 baseDropdown.addEventListener('change', function () {
   localStorage.setItem('base', this.value)
@@ -175,19 +166,6 @@ baseDropdown.addEventListener('change', function () {
 targetDropdown.addEventListener('change', function () {
   localStorage.setItem('target', this.value)
 })
-
-if (!navigator.onLine) {
-  main.classList.add('show')
-  spinner.classList.add('hide')
-  name.classList.add('hide')
-  change.classList.add('hide')
-  price.innerHTML = 'No Connection'
-} else {
-  change.classList.remove('hide')
-  main.classList.remove('show')
-  spinner.classList.remove('hide')
-  name.classList.remove('hide')
-}
 
 setInterval(function () {
   getTicker(localStorage.getItem('base') || 'BTC', localStorage.getItem('target') || 'USD')
