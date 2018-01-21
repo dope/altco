@@ -1,12 +1,11 @@
 :root {
-  --main-accent: #3F79F6;
   --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --success-color: #4CAF50;
   --error-color: #D03910;
   --input-color: #30343F;
   --dark-theme: #202731;
   --color-white: #FFFFFF;
-  --toggle-background: rgba(0, 0, 0, 0.5);
+  --toggle-background: var(--label-box-shadow);
   --toggle-label: #DEE2E7;
   --label-box-shadow: #B7C0C8;
   --label-font-size: 13px;
@@ -105,7 +104,6 @@ input {
   font-size: var(--price-name-font-size);
   text-align: left;
   font-weight: 600;
-  background: var(--main-accent);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   color: var(--color-white);
   padding: 10px;
@@ -125,9 +123,9 @@ input {
   border-radius: 100px;
   width: 35px;
   height: 35px;
-  border-top: 2px solid var(--main-accent);
-  border-right: 2px solid var(--main-accent);
-  border-bottom: 2px solid var(--main-accent);
+  border-top: 2px solid var(--dark-theme);
+  border-right: 2px solid var(--dark-theme);
+  border-bottom: 2px solid var(--dark-theme);
   border-left: 2px solid transparent;
   animation: spin 500ms linear infinite;
   opacity: 1;
@@ -143,14 +141,12 @@ input {
   transition: opacity 400ms ease-in-out 300ms;
 }
 
-.theme {
-  position: absolute;
-  bottom: 40px;
-  right: 40px;
+.checkbox {
+  position: relative;
   width: 50px;
 }
 
-.theme span {
+.checkbox span {
   position: absolute;
   min-width: 100px;
   top: -25px;
@@ -163,14 +159,14 @@ input {
   transition: transform 300ms ease-in-out 200ms, opacity 300ms ease-in-out 200ms;
 }
 
-.theme input {
+.checkbox input {
   display: block;
   -webkit-appearance: none;
   width: 50px;
   border-bottom: 0;
 }
 
-.theme label {
+.checkbox label {
   cursor: ew-resize;
   background: var(--toggle-label);
   position: absolute;
@@ -183,12 +179,12 @@ input {
   border-radius: 100px;
 }
 
-.theme label:hover span {
+.checkbox label:hover span {
   transform: translate3d(0, 0, 0);
   opacity: 1;
 }
 
-.theme label:after {
+.checkbox label:after {
   position: absolute;
   top: -1px;
   bottom: 0;
@@ -203,11 +199,13 @@ input {
   box-shadow: 0 1px 4px var(--label-box-shadow);
 }
 
-.theme input:checked + label:after {
+.checkbox input:checked + label:after {
   left: calc(100% - 18px);
 }
 
 .btn {
+  position: relative;
+  z-index: 0;
   -webkit-appearance: none;
   box-shadow: 0;
   border: 0;
@@ -226,15 +224,16 @@ input {
   background: transparent;
 }
 
-.btn--modal {
+.btn--news {
+  position: fixed;
+  top: 40px;
+  left: 40px;
+}
+
+.btn--settings {
   position: fixed;
   top: 40px;
   right: 40px;
-}
-
-.btn:hover {
-  border-color: var(--main-accent);
-  color: var(--main-accent);
 }
 
 .btn:focus {
@@ -248,6 +247,12 @@ input {
 
 .dark .price {
   color: var(--color-white);
+}
+
+.dark .spinner {
+  border-top: 2px solid var(--color-white);
+  border-right: 2px solid var(--color-white);
+  border-bottom: 2px solid var(--color-white);
 }
 
 .dark label {
@@ -264,9 +269,6 @@ input {
   color: var(--color-white);
 }
 
-.dark .theme label {
-  background: var(--toggle-background);
-}
 
 .show {
   opacity: 1;
@@ -274,6 +276,10 @@ input {
 
 .hide {
   opacity: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 @keyframes spin {
@@ -288,6 +294,7 @@ input {
 
 .modal {
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   width: 100%;
@@ -299,8 +306,8 @@ input {
   opacity: 0;
   transition: opacity 400ms linear;
 }
+
 .modal__overlay {
-  background: var(--main-accent);
   position: absolute;
   top: 0;
   left: 0;
@@ -357,7 +364,6 @@ input {
 
 .modal__price .price__name {
   background: var(--color-white);
-  color: var(--main-accent);
   transition: opacity 400ms linear 100ms;
 }
 
@@ -409,6 +415,49 @@ input {
 .article__desc {
   line-height: 1.5;
   font-size: 13px;
+}
+
+.settings {
+  position: relative;
+}
+
+.settings__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  padding-left: 40px;
+  position: relative;
+  text-decoration: none;
+  transition: background 300ms ease-in-out 100ms;
+}
+
+.settings__item > * {
+  color: #BBC1CF;
+}
+
+.settings__item:after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - 40px);
+  height: 1px;
+  background: rgba(63, 121, 246, 0.1);
+  content: "";
+}
+
+.color {
+  width: 50px;
+  height: 20px;
+  border-radius: 100px;
+  border: 1px solid rgba(63, 121, 246, 0.1);
+}
+
+.color__input {
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
 }
 
 #mainPosts {

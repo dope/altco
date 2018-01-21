@@ -6,6 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Altco</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+      .bg-accent {
+        background: #3F79F6;
+      }
+
+      .c-accent {
+        color: #3F79F6;
+      }
+    </style>
 </head>
 <body>
 
@@ -24,34 +33,60 @@
   </section>
 
   <div id="main" class="main price">
-    <h4 class="price__name" id="name"></h4>
+    <h4 class="price__name bg-accent" id="name"></h4>
     <span id="price"></span>
 
     <span class="change" id="change"></span>
   </div>
 
-  <div class="theme">
-    <input id="theme" type="checkbox">
-    <label for="theme">
-      <span>Switch Theme</span>
-    </label>
-  </div>
+  <button class="btn btn--news newsBtn">News</button>
 
-  <button class="btn btn--modal newsBtn">News</button>
-
-  <div class="modal">
+  <div class="modal modal--news">
     <div class="modal__price">
-      <h4 class="price__name" id="modalName"></h4>
+      <h4 class="price__name c-accent" id="modalName"></h4>
       <span id="modalPrice"></span>
     </div>
 
-    <div class="modal__overlay modalExit"></div>
+    <div class="modal__overlay modal__overlay--news bg-accent"></div>
     <div class="modal__inner">
       <span class="spinner spinner--modal" id="modalSpinner"></span>
       <div id="mainPosts">
         <h1 class="modal__title">Top Headlines</h1>
         <article id="posts">
         </article>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn--settings settingsBtn">Settings</button>
+
+  <div class="modal modal--settings">
+    <div class="modal__overlay modal__overlay--settings bg-accent"></div>
+    <div class="modal__inner">
+      <h1 class="modal__title">Settings</h1>
+      <div class="settings">
+        <div class="settings__item">
+          <span>Dark Theme</span>
+          <div class="checkbox">
+            <input id="theme" type="checkbox">
+            <label for="theme"></label>
+          </div>
+        </div>
+
+        <div class="settings__item">
+          <span>Hide News</span>
+          <div class="checkbox">
+            <input id="hideNews" type="checkbox">
+            <label for="hideNews"></label>
+          </div>
+        </div>
+
+        <div class="settings__item">
+          <span>Accent Colour</span>
+          <label class="color bg-accent">
+            <input class="color__input" type="color" id="color">
+          </label>
+        </div>
       </div>
     </div>
   </div>

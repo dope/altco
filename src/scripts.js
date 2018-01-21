@@ -4,15 +4,22 @@ const name           = document.getElementById('name')
 const price          = document.getElementById('price')
 const change         = document.getElementById('change')
 const theme          = document.getElementById('theme')
+const hideNews       = document.getElementById('hideNews')
+const color          = document.getElementById('color')
 const arrow          = document.getElementById('arrow')
 const spinner        = document.getElementById('spinner')
 const modalSpinner   = document.getElementById('modalSpinner')
 const main           = document.getElementById('main')
 const themeValue     = JSON.parse(localStorage.getItem('darkTheme'))
+const newsValue      = JSON.parse(localStorage.getItem('hideNews'))
+const colorValue     = localStorage.getItem('color')
 const html           = document.documentElement
 const newsBtn        = document.querySelector('.newsBtn')
-const modal          = document.querySelector('.modal')
-const modalExit      = document.querySelector('.modalExit')
+const settingsBtn    = document.querySelector('.settingsBtn')
+const news           = document.querySelector('.modal--news')
+const settings       = document.querySelector('.modal--settings')
+const newsExit       = document.querySelector('.modal__overlay--news')
+const settingsExit   = document.querySelector('.modal__overlay--settings')
 const newsUrl        = 'https://newsapi.org/v2/top-headlines?sources=crypto-coins-news&apiKey='
 const newsApiKey     = '9df70807854047a1b82ae13db6478880'
 const posts          = document.getElementById('posts')
@@ -52,49 +59,89 @@ fetch(newsUrl + newsApiKey)
 /**
 * Modal
 */
-function openModal() {
+function openModal(modal) {
   html.classList.add('fixed')
   modal.classList.add('modal--open')
-  localStorage.setItem('modal', true)
 }
 
-function closeModal() {
+function closeModal(modal) {
   modal.classList.remove('modal--open');
   html.classList.remove('fixed')
-  localStorage.setItem('modal', false)
 }
 
-JSON.parse(localStorage.getItem('modal')) === true ? openModal() : null
+newsExit.addEventListener('click', function(modal) {
+  closeModal(news)
+})
 
-modalExit.addEventListener('click', closeModal)
-newsBtn.addEventListener('click', openModal)
+settingsExit.addEventListener('click', function(modal) {
+  closeModal(settings)
+})
+
+newsBtn.addEventListener('click', function(modal) {
+  openModal(news)
+})
+
+settingsBtn.addEventListener('click', function(modal) {
+  openModal(settings)
+})
 
 document.addEventListener('keydown', function(event) {
   const key = event.key;
   if (key === "Escape") {
-    closeModal()
+    closeModal(news) || closeModal(settings)
   }
 });
 
 /**
 * Dark/Light Theme
 **/
-if (themeValue === true) {
-  document.documentElement.classList.add('dark')
-} else {
-  document.documentElement.classList.remove('dark')
-}
+themeValue === true ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')
 
 theme.addEventListener('click', function () {
   localStorage.setItem('darkTheme', theme.checked)
-  if (theme.checked) {
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
+  theme.checked ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')
 })
 
 theme.checked = themeValue
+
+/**
+* Show News Button
+*/
+newsValue === true ? newsBtn.classList.add('hidden') : newsBtn.classList.remove('hidden')
+
+hideNews.addEventListener('click', function () {
+  localStorage.setItem('hideNews', hideNews.checked)
+
+  hideNews.checked ? newsBtn.classList.add('hidden') : newsBtn.classList.remove('hidden')
+})
+
+hideNews.checked = newsValue
+
+
+/**
+* Colour Changer
+**/
+function updateColor(changedColor) {
+  let accentBackgrounds = document.getElementsByClassName('bg-accent');
+  let accentColors = document.getElementsByClassName('c-accent');
+
+  for (let i = 0; i < accentBackgrounds.length; i++) {
+      accentBackgrounds[i].style.backgroundColor = changedColor;
+  }
+
+  for (let i = 0; i < accentColors.length; i++) {
+      accentColors[i].style.color = changedColor;
+  }
+}
+
+color.addEventListener('change', function() {
+  localStorage.setItem('color', color.value)
+  updateColor(color.value)
+});
+
+color.value = colorValue || '#3F79F6'
+
+updateColor(colorValue)
 
 
 /**
