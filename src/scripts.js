@@ -90,6 +90,16 @@ document.addEventListener('keydown', function(event) {
   if (key === "Escape") {
     closeModal(news) || closeModal(settings)
   }
+
+  if (key === 's') {
+    openModal(settings)
+    closeModal(news)
+  }
+
+  if (key === 'n') {
+    openModal(news)
+    closeModal(settings)
+  }
 });
 
 /**
