@@ -6,6 +6,7 @@ I wanted I could take a time to catch up on the latest headlines.
 
 ![Light Theme](docs/images/light.jpg)
 ![News](docs/images/news.jpg)
+![Settings](docs/images/settings.jpg)
 
 ### Installation
 
