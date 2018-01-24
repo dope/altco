@@ -269,6 +269,35 @@ input {
   color: var(--color-white);
 }
 
+.dark .modal__inner {
+  background: var(--dark-theme);
+}
+
+.dark .modal__title{
+  background: var(--dark-theme);
+  color: var(--color-white);
+}
+
+.dark .footer {
+  background: var(--dark-theme);
+  color: var(--color-white)
+}
+
+.dark .article__title {
+  color: var(--color-white)
+}
+
+.dark .article:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dark .checkbox label {
+  background: rgba(0, 0, 0, 0.4)
+}
+
+.dark .keyboard__shortcut {
+  background: rgba(225, 225, 225, 0.4)
+}
 
 .show {
   opacity: 1;
@@ -317,7 +346,7 @@ input {
 }
 
 .modal__inner {
-  background: white;
+  background: var(--color-white);
   position: relative;
   z-index: 1;
   width: 100%;
@@ -417,10 +446,6 @@ input {
   font-size: 13px;
 }
 
-.settings {
-  position: relative;
-}
-
 .settings__item {
   display: flex;
   justify-content: space-between;
@@ -458,6 +483,31 @@ input {
   border: 0;
   opacity: 0;
   cursor: pointer;
+}
+
+.footer {
+  background: var(--color-white);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 40px;
+}
+
+.footer h4 {
+  margin-bottom: 20px;
+}
+
+.keyboard {
+  margin-bottom: 10px;
+}
+
+.keyboard__shortcut {
+  border-radius: 4px;
+  padding: 3px 6px;
+  line-height: 1;
+  display: inline-block;
+  margin-right: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 #mainPosts {
